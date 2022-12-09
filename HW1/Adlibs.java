@@ -6,6 +6,6 @@ package HW1;
 //        color is ___"
 public class Adlibs {
     public String story(String name, int age, String favoriteColor) {
-        return null; // replace null with your code
+        return ("Hello! I'm " + name + ", I am " + age + " and my favorite color is " + favoriteColor); // replace null with your code
     }
 }

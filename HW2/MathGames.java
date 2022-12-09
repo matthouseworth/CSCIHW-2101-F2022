@@ -1,6 +1,5 @@
 package HW2;
 
-
 public class MathGames {
     // 1. Create a method that will calculate the Pythagorean Theorem (https://en.wikipedia.org/wiki/Pythagorean_theorem)
     // c = sqrt(a^2+b^2)
@@ -10,7 +9,18 @@ public class MathGames {
     // Hint 2: Math.pow and Math.sqrt are your friend here
     // Bonus points: Try to make it accept any 2 sides and return the 3rd. So it can take in
     // Hypotenuse and Perpendicular and return the base.
-
+    
+    public static void triangle(double Base ,double Perpendicular)  {
+        // int num1;
+        // Scanner s = new Scanner(System.in);
+        // System.out.println("What is the length of the base of the triangle?");
+        // num1 = s.nextInt();
+        // int num2;
+        // System.out.println("What is the length of the Perpendicular side of the triangle?");
+        // Scanner s2 = new Scanner(System.in);
+        // num2 = s2.nextInt();
+        System.out.println("The hypotenuse of the triangle is " + Math.sqrt(Math.pow(Base,2) + Math.pow(Perpendicular,2)));
+    }
 
 
     
@@ -26,7 +36,23 @@ public class MathGames {
         // Hint 2: You will probably need to cast the double to an int
         // Hint 3: You will probably need to use the Math.ceil() method 
 
-
+        public static void gradecalc(double grade) {
+            if (Math.ceil(grade) >= 90) {
+                System.out.println("Your grade is an A");
+            } else if (Math.ceil(grade) >= 80) {
+                System.out.println("Your grade is a B");
+            }
+             else if (Math.ceil(grade) >= 70) {
+                System.out.println("Your grade is a C");
+            }
+             else if (Math.ceil(grade) >= 60) {
+                System.out.println("Your grade is a D");
+            }
+             else{
+                System.out.println("Your grade is an F");
+            }
+        }
+    
 
 
 
@@ -37,19 +63,24 @@ public class MathGames {
     //      Hint 2: Using doubles will be helpful for when you need to calculate decimals
     //      Hint 3: It is possible you might need to Cast a double to an int or vice versa
     //      Hint 4: You will probably need to use the Math.ceil() method 
-
-    
+        public static void TipBill(double bill, int people, double percentToTip) {
+            System.out.println("Each person will pay $" + (Math.ceil(bill) * percentToTip) % people);
+        }
+            
+        
  
 
 
     // you do not need this main if you want to make a tester class
-     public static void main(String[] args){
-        System.out.println("Hello World");
-        
-        
-    }
-
-
-
-
+    public static void main(String[] args){
+       System.out.println("Hello World");
+       triangle(3,4);
+       gradecalc(55);
+       TipBill(213.47, 6, .15);
+     }
 }
+        
+
+
+
+
