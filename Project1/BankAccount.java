@@ -1,5 +1,8 @@
 package Project1;
+import java.text.BreakIterator;
 import java.util.Scanner;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 /*
  * This is a Java Doc
@@ -118,10 +121,77 @@ public class BankAccount {
         System.out.println("Compound Interest after " + time + " years: $" + compinterest);
         System.out.println("Amount after " + time + " years: $" + roundedamount);
     }
+    //Overdraft Fee and Warning
+    public void overDraft(BankAccount bank, double amount){
+        String feeChoice;
+        if (bank.balance < 0){
+        System.out.println("You have insufficient funds to withdraw $" + amount + ", you have been charged an overdraft fee of $35");
+        this.balance = balance -= 35;
+        }else if (bank.balance < amount){
+            System.out.println("If you complete this transaction, your account will be in the negative, are you sure you want to continue? You will be charged a fee");
+            Scanner overDraftFee = new Scanner(System.in);
+            feeChoice = overDraftFee.nextLine();
+            if (feeChoice == "Yes"){
+            System.out.println("Your new balance is " + (balance - (amount + 35)));
+            }else if (feeChoice == "No"){
+            System.out.println("This transaction has been cancelled");
+            }else{
+            System.out.println("This is not a valid response");
+            }
+        }else{
+        this.balance = balance -= amount;
+        }
+    }
 
+    //Transfer Function
+    public void transfer(BankAccount bank, double SecondaryAccount, double AmntToTransfer){
+        SecondaryAccount = 25000;
+        this.balance =+ AmntToTransfer;
+        SecondaryAccount =- AmntToTransfer;
+        System.out.println("The balance of your bank account is now $" + balance + " and the new value of the Secondary account is now $" + SecondaryAccount);
+    }
 
+    //Simple Interest Calc
+    public void simpleInterest(double principal, double rate, int time){
+        double amount = principal * (1 + (rate + time));
+        double roundedamount = Math.round(amount * 100.0) / 100.0;
+        double simpleInterest = amount - principal;
+        System.out.println("Current Rate is: " + rate + "%");
+        System.out.println("Selected Time is: " + time + " years");
+        System.out.println("Simple Interest after " + time + "years: $" + simpleInterest);
+        System.out.println("Amount after " + time + " years: $" + roundedamount);
+    }
 
-
+    public void createSavingsAccount(double initialDeposit, String interestType, double principal, int years, double interest) {
+        String savingsOption;
+        String interestType;
+        double principal;
+        int years;
+        double interest;
+        double total;
+        if (initialDeposit >= 10000) {
+            System.out.println("Do you want to create a savings account?");
+            Scanner savingsAcc = new Scanner(System.in);
+            savingsOption = savingsAcc.nextLine();
+            if (savingsOption == "Yes"){
+                if (interestType == "compound") {
+                    interest = principal * Math.pow(1 + 0.0001 / 4, 4 * years);
+                    total = principal + interest;
+                    System.out.println(total);
+                }else if (interestType == "simple") {
+                    interest = principal * 0.001 * years;
+                    total = principal + interest;
+                    System.out.println(total);
+                }else {
+                    System.out.println("Invalid interest type. Please choose either 'compound' or 'simple'.");
+            }else{
+            System.out.println("No savings account will be created");
+            }
+            }else {
+            System.out.println("Initial deposit must be at least 10,000 to create a savings account.");
+        }
+    }
+}
 
     // Create a method that will print a menu to the user
     // this is called a helper method
