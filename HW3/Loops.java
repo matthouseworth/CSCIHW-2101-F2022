@@ -17,7 +17,16 @@ public class Loops {
     //eeeeat -> false
 
     public static boolean loopE(String str){
-        return true; // <- this should be changed 
+        int count = 0;
+    for (int i = 0; i < str.length(); i++) {
+        if (str.charAt(i) == 'e') {
+            count++;
+        }
+    }
+
+    // Return true if the number of occurrences of 'e' is between 1 and 3 (inclusive),
+    // and false otherwise.
+    return count >= 1 && count <= 3;
     }
 
     //Given a String str and int n return a larger string
@@ -26,7 +35,11 @@ public class Loops {
     //stringTimes("Code",2) ->"CodeCode"
     //stringTimes("Code",4) ->"CodeCodeCodeCode"
     public static String stringTimes(String str, int n) {
-        return null; // <- this should be changed 
+        String result = "";
+        for (int i = 0; i < n; i++) {
+            result += str;
+        }
+        return result; // <- this should be changed 
     } 
 
     //Create a method Given a string, return the string where all of the "z"
@@ -37,9 +50,18 @@ public class Loops {
     //stringZ("nozthaznks") -> "nothanks"
     //stringZ("xksiazdjaasldzsajzasdz") -> "xksiadjaasldsajasdz"
     public static String stringZ(String str){
-        return null; // <- this should be changed 
+        String result = "";
+    for (int i = 0; i < str.length(); i++) {
+        if (i == 0 || i == str.length() - 1) {
+            result += str.charAt(i);
+        } else {
+            if (str.charAt(i) != 'z') {
+                result += str.charAt(i);
+            }
+        }
     }
-
+    return result;
+}
     //Create a method that contains a while loop that allows for
     //The user to input numbers until the number 0 is entered. Each time a number is 
     //entered the total will be summed and then prompted for a second number. 
@@ -66,11 +88,35 @@ public class Loops {
     // Number: 0
     // TOTAL ENDED --- The total is 27.
     public static void sums(){
+        int OldNumber;
+        int NewestNumber;
+        int TotalNumber;
+        OldNumber = 0;
+        TotalNumber = 0;
+        Scanner input = new Scanner(System.in);
+        NewestNumber = input.nextInt();
+        System.out.println("I will add up the numbers you give me...");
+            while (NewestNumber != 0){
+                TotalNumber = OldNumber + NewestNumber;
+                OldNumber = NewestNumber;
+                System.out.println("The total so far is " + TotalNumber);
+                Scanner input2 = new Scanner(System.in);
+                NewestNumber = input.nextInt();
+                OldNumber = TotalNumber;
+            }
+        System.out.println("TOTAL ENDED - - - The total is " + TotalNumber );
     }
 
     public static void main(String[] args) {
         // Add code to help test your methods here
         System.out.println("Start of Main");
+        boolean result = loopE("energizer ultimate lithium");
+        System.out.println(result);
+        String result2 = stringTimes("nice", 6);
+        System.out.println(result2);
+        String result3 = stringZ("Bazinga");
+        System.out.println(result3);
+        sums();
     }
     
 }
